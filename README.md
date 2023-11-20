@@ -1,7 +1,5 @@
 # Detecting Backdoor Attacks in Black-Box Neural Networks through Hardware Performance Counters
 
----
-
 ## 📑 Overview
 The repository presents a defense framework against backdoor attacks in Deep Neural Networks (DNNs), which is operational even when the network internals are unknown (i.e., black-box scenario). It utilizes Hardware Performance Counters (HPCs) to monitor the microarchitectural behavior of the DNN during inference. By applying Gaussian Mixture Models to the collected HPC data, the framework detects unusual patterns that indicate whether an input is legitimate or maliciously altered (backdoor).
 
