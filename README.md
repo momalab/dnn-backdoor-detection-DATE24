@@ -8,7 +8,7 @@ The repository presents a defense framework against backdoor attacks in Deep Neu
 - **Operating System**: Linux (Tested on Ubuntu 18.04.6 LTS).
 - **Processor**: Intel (Tested on Intel i7-9700).
 - **Python Version**: Python 3.10.9 (Confirmed compatibility).
-- **CUDA Toolkit**: Optional for GPU acceleration (Tested with version 11.5, V11.5.119).
+- **CUDA Toolkit**: Optional for GPU acceleration during training (Tested with version 11.5, V11.5.119).
 
 ## 🛠️ Installation Guide
 - Ensure the availability of the `perf` tool in the system.
