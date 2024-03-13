@@ -1,8 +1,7 @@
 # Detecting Backdoor Attacks in Black-Box Neural Networks through Hardware Performance Counters
 
 ## 📑 Overview
-The repository presents a defense framework against backdoor attacks in Deep Neural Networks (DNNs), which is operational even when the network internals are unknown (i.e., black-box scenario). It utilizes Hardware Performance Counters (HPCs) to monitor the microarchitectural behavior of the DNN during inference. By applying Gaussian Mixture Models to the collected HPC data, the framework detects unusual patterns that indicate whether an input is legitimate or maliciously altered (backdoor).
-
+The repository introduces a defense framework designed to protect Deep Neural Networks (DNNs) from backdoor attacks. This framework is effective even when network internals are unknown (i.e., a black-box scenario). This approach uses Hardware Performance Counters (HPCs) to observe a DNN's microarchitectural activities during its inference operation. By applying Gaussian Mixture Models to collected HPC data, this framework identifies unusual patterns that indicate whether an input is legitimate or has been maliciously tampered with by a backdoor trigger.
 
 ## 🖥️  System Requirements
 - **Operating System**: Linux (Tested on Ubuntu 18.04.6 LTS).
@@ -28,7 +27,7 @@ python backdoor_training.py --target=<target_class>
 ```
 
 2. **Image Preparation**:
-Generate two sets of CIFAR-10 images: unaltered (saved in `benign_images`) and modified with the backdoor trigger (saved in `backdoor_images`).
+Generate two sets of CIFAR-10 images: legitimate  (saved in `benign_images`) and modified with the backdoor trigger (saved in `backdoor_images`).
 ```
 python save_images.py
 ```
@@ -50,6 +49,9 @@ Construct Gaussian Mixture Models from benign performance counter statistics, th
 ```
 python classify_backdoor.py
 ```
+
+6. **Reproducibility**:
+In order to reproduce the results presented in the paper, one sample `perf_benign.log` and one sample `perf_backdoor.log` files are included in the `hpc_data` directory.
 
 ---
 
