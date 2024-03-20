@@ -8,6 +8,7 @@ STD_DEV_MULTIPLIER = 3  # Used to define the range for outlier detection
 GMM_MAX_ITER = 1000  # Defines the maximum iterations for GMM fitting
 GMM_N_INIT = 10  # Specifies the number of initializations for GMM
 THRESHOLD_MULTIPLIER = 3  # Used in threshold calculation for anomaly detection
+NUM_SAMPLES = 100 # Number of samples used for building GMM
 EVENTS = ['branches', 'branch-misses', 'cache-references', 'cache-misses', 'instructions']
 NUM_SPLITS = CONFIG["num_classes"]  # Number of data splits for analysis
 
@@ -102,12 +103,15 @@ def analyze_event(event, hpc_data_benign, hpc_data_backdoor):
             hpc_data_backdoor (dict): The backdoor HPC data.
     """
     print(f"---------------------\nEvent: {event}\n=====================")
-    # Outlier removal for clean analysis
+    # Remove outliers for clean analysis
     benign_data = np.array(remove_outliers(hpc_data_benign[event]))
-    best_gmm = find_best_gmm(benign_data)
+
+    # Select a fraction of benign data randomly to build GMM 
+    train_benign_data = np.random.choice(benign_data, NUM_SAMPLES, replace=False)
+    best_gmm = find_best_gmm(train_benign_data)
 
     # Establishing a threshold for anomaly detection
-    benign_scores = calculate_scores(benign_data, best_gmm)
+    benign_scores = calculate_scores(train_benign_data, best_gmm)
     gmm_threshold_mean = np.mean(benign_scores)
     gmm_threshold_std = np.std(benign_scores)
 
